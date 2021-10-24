@@ -3,176 +3,99 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseline.FXMLController">
-   <right>
-      <VBox fx:id="groupRight" prefHeight="400.0" prefWidth="234.0" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseline.SceneController">
+   <children>
+      <MenuBar layoutY="-1.0" style="-fx-background-color: #e1e1e1;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+          <Menu fx:id="menuFile" mnemonicParsing="false" style="-fx-background-color: #e1e1e1;" text="File">
+            <items>
+                  <MenuItem fx:id="menuFileSaveList" mnemonicParsing="false" onAction="#saveLists" text="Save Lists" />
+                  <MenuItem fx:id="menuFileLoadList" mnemonicParsing="false" onAction="#loadLists" text="Load Lists" />
+            </items>
+          </Menu>
+          <Menu fx:id="menuActions" mnemonicParsing="false" style="-fx-background-color: #e1e1e1;" text="Actions">
+            <items>
+              <MenuItem fx:id="menuActionsNewList" mnemonicParsing="false" onAction="#createList" text="New List" />
+                  <MenuItem fx:id="menuActionsDeleteLists" mnemonicParsing="false" text="Delete Lists" />
+            </items>
+          </Menu>
+          <Menu fx:id="menuView" mnemonicParsing="false" style="-fx-background-color: #e1e1e1;" text="View">
+            <items>
+              <MenuItem fx:id="menuViewAll" mnemonicParsing="false" onAction="#viewAllItems" text="All" />
+                  <MenuItem fx:id="menuViewComplete" mnemonicParsing="false" onAction="#viewCompleteItems" text="Complete" />
+                  <MenuItem fx:id="menuViewIncomplete" mnemonicParsing="false" onAction="#viewIncompleteItems" text="Incomplete" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <VBox layoutY="30.0" prefHeight="378.0" prefWidth="600.0" AnchorPane.topAnchor="30.0">
          <children>
-            <Pane fx:id="optionsPane" prefHeight="300.0" prefWidth="200.0">
+            <HBox prefHeight="328.0" prefWidth="600.0">
                <children>
-                  <Label fx:id="optionsLabel" alignment="TOP_LEFT" contentDisplay="CENTER" text="Options">
+                  <ScrollPane fx:id="leftScrollPane" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="188.0">
+                           <children>
+                              <ListView fx:id="leftListView" layoutY="7.0" prefWidth="198.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </ListView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+                  <ScrollPane fx:id="rightScrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="400.0">
+                     <content>
+                        <AnchorPane>
+                           <children>
+                              <Pane prefHeight="51.0" prefWidth="400.0" style="-fx-background-color: #2196f3;">
+                                 <children>
+                                    <TextField fx:id="rightTitleTextField" layoutX="30.0" layoutY="9.0" onAction="#changeTitle" prefWidth="200.0" promptText="[Enter title here]">
+                                       <font>
+                                          <Font name="Segoe UI" size="12.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </Pane>
+                              <ListView fx:id="rightListView" layoutY="47.0" prefHeight="275.0" prefWidth="400.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+            <Pane prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #e1e1e1;">
+               <children>
+                  <Button fx:id="newItemButton" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#addItemToList" text="New Item">
                      <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="descriptionLabel" layoutY="50.0" text="Description">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="descriptionTextField" layoutX="20.0" layoutY="70.0" prefWidth="214.0" />
-                  <Label fx:id="dueDateLabel" layoutY="120.0" text="Due Date">
-                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
-                     </font>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-                  <DatePicker fx:id="dueDateDatePicker" layoutX="20.0" layoutY="140.0" />
-                  <Label fx:id="completeLabel" layoutY="190.0" text="Complete?">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <ToggleButton fx:id="completeToggleButton" layoutX="132.0" layoutY="185.0" mnemonicParsing="false" prefHeight="18.0" text="Complete?">
-                     <font>
-                        <Font name="Segoe UI" size="14.0" />
-                     </font>
-                  </ToggleButton>
-                  <Button fx:id="deleteItemButton" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" text="Delete Item">
-                     <font>
-                        <Font name="Segoe UI" size="14.0" />
+                        <Font name="Segoe UI" size="12.0" />
                      </font>
                   </Button>
+                  <TextField fx:id="descriptionTextField" layoutX="140.0" layoutY="11.0" onAction="#setDescription" prefHeight="26.0" prefWidth="230.0" promptText="[Enter description here]" style="-fx-border-color: #2196f3;" />
+                  <DatePicker fx:id="dueDateDatePicker" layoutX="383.0" layoutY="11.0" onAction="#setDate" onKeyTyped="#setDate" prefHeight="26.0" prefWidth="110.0" promptText="Due Date" />
+                  <MenuButton fx:id="statusButton" layoutX="505.0" layoutY="11.0" mnemonicParsing="false" text="Status">
+                    <items>
+                      <MenuItem fx:id="statusComplete" mnemonicParsing="false" onAction="#setStatusToComplete" text="Complete" />
+                      <MenuItem fx:id="statusIncomplete" mnemonicParsing="false" onAction="#setStatusToIncomplete" text="Incomplete" />
+                    </items>
+                  </MenuButton>
                </children>
             </Pane>
-            <Pane fx:id="otherOptionsPane" prefHeight="88.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="displaySettingsLabel" text="Display Settings">
-                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
-                     </font>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-                  <GridPane fx:id="displaySettingsGridPane" layoutY="20.0" prefWidth="234.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="66.20001220703125" minWidth="10.0" prefWidth="43.199975585937494" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.60003662109375" minWidth="10.0" prefWidth="88.4000244140625" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="88.60003662109375" minWidth="10.0" prefWidth="83.4000244140625" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <RadioButton fx:id="allItemsRadioButton" mnemonicParsing="false" text="All">
-                           <font>
-                              <Font name="Segoe UI" size="12.0" />
-                           </font>
-                        </RadioButton>
-                        <RadioButton fx:id="completeItemsRadioButton" mnemonicParsing="false" text="Complete" GridPane.columnIndex="2">
-                           <font>
-                              <Font name="Segoe UI" size="12.0" />
-                           </font>
-                        </RadioButton>
-                        <RadioButton fx:id="incompleteItemsRadioButton" mnemonicParsing="false" prefWidth="95.0" text="Incomplete" GridPane.columnIndex="1" />
-                     </children>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </GridPane>
-                  <Button fx:id="saveListsButton" layoutX="20.0" layoutY="57.0" mnemonicParsing="false" text="Save Lists">
-                     <font>
-                        <Font name="Segoe UI" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="loadListsButton" layoutX="150.0" layoutY="58.0" mnemonicParsing="false" text="Load Lists">
-                     <font>
-                        <Font name="Segoe UI" size="14.0" />
-                     </font>
-                  </Button>
-               </children></Pane>
          </children>
       </VBox>
-   </right>
-   <padding>
-      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-   </padding>
-   <left>
-      <VBox fx:id="groupLeft" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane fx:id="listManagerPane" prefHeight="100.0" prefWidth="150.0">
-               <children>
-                  <Button fx:id="addListButton" layoutX="40.0" layoutY="14.0" mnemonicParsing="false" text="Add List" textAlignment="CENTER">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="removeListButton" layoutX="28.0" layoutY="48.0" mnemonicParsing="false" text="Remove List">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </Pane>
-            <ScrollPane fx:id="listScrollPane" prefHeight="300.0" prefWidth="200.0">
-              <content>
-                <AnchorPane fx:id="listAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="150.0" />
-              </content>
-            </ScrollPane>
-         </children>
-      </VBox>
-   </left>
-   <center>
-      <VBox fx:id="groupMiddle" prefHeight="400.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane fx:id="itemTitlePane" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="currentTitleLabel" alignment="TOP_CENTER" contentDisplay="CENTER" layoutY="3.0" text="Title">
-                     <font>
-                        <Font name="Segoe UI Bold" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-                  <Button fx:id="addItemButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="60.0" mnemonicParsing="false" text="Add Item" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
-                     <font>
-                        <Font name="Segoe UI" size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </Pane>
-            <ScrollPane fx:id="itemScrollPane" prefHeight="300.0" prefWidth="200.0">
-              <content>
-                <AnchorPane fx:id="itemAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="200.0" />
-              </content>
-            </ScrollPane>
-         </children>
-      </VBox>
-   </center>
-</BorderPane>
+   </children>
+</AnchorPane>
