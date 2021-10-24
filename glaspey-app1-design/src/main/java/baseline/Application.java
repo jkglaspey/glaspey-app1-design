@@ -3,6 +3,9 @@
  *  Copyright 2021 Joshua Glaspey
  */
 
+// The purpose of this class is to initialize the GUI and run the application.
+// Note: Since it calls the GUI, it does not require unit testing
+
 package baseline;
 
 import javafx.fxml.FXMLLoader;

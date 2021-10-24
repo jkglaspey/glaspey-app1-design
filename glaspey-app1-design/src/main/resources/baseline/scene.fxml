@@ -29,7 +29,8 @@
           <Menu fx:id="menuActions" mnemonicParsing="false" style="-fx-background-color: #e1e1e1;" text="Actions">
             <items>
               <MenuItem fx:id="menuActionsNewList" mnemonicParsing="false" onAction="#createList" text="New List" />
-                  <MenuItem fx:id="menuActionsDeleteLists" mnemonicParsing="false" text="Delete Lists" />
+                  <MenuItem fx:id="menuActionsDeleteLists" mnemonicParsing="false" onAction="#deleteLists" text="Delete Lists" />
+                  <MenuItem fx:id="menuButtonDeleteItems" mnemonicParsing="false" onAction="#deleteItems" text="Delete Items" />
             </items>
           </Menu>
           <Menu fx:id="menuView" mnemonicParsing="false" style="-fx-background-color: #e1e1e1;" text="View">
