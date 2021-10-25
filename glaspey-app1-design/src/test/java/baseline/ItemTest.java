@@ -8,13 +8,11 @@ package baseline;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ItemTest {
 
     // create item before running each test
-    @BeforeEach
     Item test;
+    @BeforeEach
     void init_Item() {
         test = new Item();
     }

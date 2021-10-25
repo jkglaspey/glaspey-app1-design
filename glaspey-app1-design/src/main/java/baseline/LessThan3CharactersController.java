@@ -4,7 +4,7 @@
  */
 
 // The purpose of this class is to pop up a window telling the user that their input was invalid.
-// Note: Since this class only manages a GUI, we do not need to test it.
+// Note: Since this class only manages a popup, we do not need to test it.
 
 package baseline;
 

@@ -55,6 +55,7 @@ class LoadFileController {
 -TextField textPane
 
 ~void loadLists(ActionEvent event)
+-{static} void load(String path)
 }
 
 'Alerts user that there cannot be > 256 of an object
@@ -70,6 +71,7 @@ class SaveFileController {
 -TextField textPane
 
 ~void saveLists(ActionEvent event)
+-void save(String path)
 }
 
 'Controls the main GUI

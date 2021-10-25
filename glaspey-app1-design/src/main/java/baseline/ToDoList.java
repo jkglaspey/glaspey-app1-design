@@ -7,10 +7,7 @@
 
 package baseline;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 
 import java.util.List;
 

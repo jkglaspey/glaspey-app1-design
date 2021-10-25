@@ -13,20 +13,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("scene.fxml"));
+        // Declare parent FXML
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("scene.fxml")));
 
+        // Set the scene and apply style
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
+        // Initialize the GUI
         stage.setTitle("To-Do List Manager");
         stage.setScene(scene);
         stage.show();
     }
 
+    // Launch the GUI
     public static void main(String[] args) {
         launch(args);
     }

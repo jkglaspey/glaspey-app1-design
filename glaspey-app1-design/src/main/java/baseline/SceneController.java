@@ -7,8 +7,6 @@
 
 package baseline;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,7 +20,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class SceneController {
 
@@ -100,9 +97,9 @@ public class SceneController {
 
     // lists which represent the current viewed items
     @FXML
-    private ObservableList<ItemCell> allItems = FXCollections.observableArrayList();    // all items (inventory)
+    private final ObservableList<ItemCell> allItems = FXCollections.observableArrayList();    // all items (inventory)
     @FXML
-    private ObservableList<ItemCell> statusItems = FXCollections.observableArrayList(); // filtered items
+    private final ObservableList<ItemCell> statusItems = FXCollections.observableArrayList(); // filtered items
 
     // pane allowing the user to scroll down to view more items if need be
     @FXML
@@ -183,7 +180,6 @@ public class SceneController {
     void deleteItems(ActionEvent event) {
         // create new List using selected values (ctrl click) of lists
         // for each list, utilize arraylist.remove() to remove that value
-        // if the size of the observable array is 0, create a new item in the to-do list
     }
 
     // method that presents a popup pane to load in new lists
@@ -261,7 +257,6 @@ public class SceneController {
     void deleteLists(ActionEvent event) {
         // create new List using selected values (ctrl click) of lists
         // for each list, utilize arraylist.remove() to remove that value
-        // if the size of the observable array is 0, create a new to-do list
     }
 
     // method that calls new GUI
